@@ -1,6 +1,6 @@
 Config
 ===
-Config localing is "conf" dir, file application.conf
+Config locate in "conf" dir, file application.conf
 
  * `samplesCount` (required): The count of requests per one resource
  * `treadsCounts` (required): The count of working treads, ex: [100], [100, 200]
