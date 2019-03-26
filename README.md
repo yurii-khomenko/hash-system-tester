@@ -54,6 +54,8 @@ Error example:
 }
 ```
 
+More details in RAMLs(doc/src/doc/raml/hashes.raml and doc/src/doc/raml/msisdns.raml)
+
 If you have another interface, you need to change HashSystemResponse and rebuild app.
 
 
