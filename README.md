@@ -17,6 +17,46 @@ Config locate in "conf" dir, file application.conf
  * `algorithm` (required): The hashing algorithm, supports: ["MD2", "MD5", "SHA-1", "SHA-224", "SHA-256", "SHA-384", "SHA-512", "SHA3-224", "SHA3-256", "SHA3-384", "SHA3-512"]
  * `salt` (required): The salt. Must be concatenating in rest of msisdn => (msisdn + salt)
 
+API
+===
+Urls configured in application.conf
+System parse JSON body to HashSystemResponse object:
+
+Get hash:
+```
+GET http://localhost:8080/api/hashes/380672240001
+```
+
+Body:
+```
+{
+    "value": "5f9ad46458d77471443578a2d5111e7f"
+}
+```
+
+Get msisdn:
+```
+GET http://localhost:8080/api/hashes/5f9ad46458d77471443578a2d5111e7f
+```
+
+Body:
+```
+{
+    "value": "380672240001"
+}
+```
+
+Error example:
+```
+{
+    "errorId": 5,
+    "errorMsg": "Incorrect MSISDN format"
+}
+```
+
+If you have another interface, you need to change HashSystemResponse and rebuild app.
+
+
 Build
 ===
 ```
