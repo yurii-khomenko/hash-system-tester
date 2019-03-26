@@ -1,0 +1,71 @@
+#%RAML 1.0
+title: Hash-system REST API hashes
+protocols: [ HTTP ]
+baseUri: http://{environment}/api
+securitySchemes:
+  basic:
+    type: Basic Authentication
+
+mediaType: application/json
+
+types:
+
+  Response: |
+  {
+    "type": "object"
+    "properties": {
+      "value": {
+        "title": "hash by msisdn",
+        "type": "string"
+      }
+    }
+  }
+
+  Error: |
+  {
+    "type": "object"
+    "properties": {
+      "errorId": {
+        "title": "Error Id.",
+        "type": "integer"
+      },
+      "errorMsg": {
+        "title": "Error description.",
+        "type": "string"
+      }
+    }
+  }
+
+/hashes/{msisdn}:
+  get:
+    description: Get hash by msisdn.
+    responses:
+      200:
+        body:
+          type: Response
+          example: |
+          {
+            "value": "5f9ad46458d77471443578a2d5111e7f"
+          }
+      400:
+        description: Msisdn is incorrect.
+        body:
+          type: Error
+          example: |
+          {
+            "errorId": 5,
+            "errorMsg": "Incorrect MSISDN format"
+          }
+      401:
+        description: Login and password is not present or incorrect in request.
+      403:
+        description: Ip adress not allowed for this login.
+      500:
+        description: Server error
+        body:
+          type: Error
+          example: |
+          {
+            "errorId": 99,
+            "errorMsg": "Internal error"
+          }
