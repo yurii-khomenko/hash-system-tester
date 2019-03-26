@@ -1,0 +1,41 @@
+<configuration>
+
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+  <!--***************************************************************************************************************-->
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>[%d{HH:mm:ss.SSS}] [%-4level] %msg%n%xException</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/app.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/app-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <maxHistory>7</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>100MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <charset>utf-8</charset>
+      <pattern>[%d{HH:mm:ss.SSS}] [%-4level] [%-36logger{36}] %msg%n%xException</pattern>
+    </encoder>
+  </appender>
+
+  <!--***************************************************************************************************************-->
+
+  <appender name="ASYNC_APP_FILE" class="ch.qos.logback.classic.AsyncAppender">
+    <queueSize>3000</queueSize><discardingThreshold>0</discardingThreshold><appender-ref ref="APP_FILE" />
+  </appender>
+
+  <!--***************************************************************************************************************-->
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="ASYNC_APP_FILE" />
+  </root>
+
+</configuration>
