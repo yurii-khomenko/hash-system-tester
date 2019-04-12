@@ -111,3 +111,12 @@ Results
 [08:28:51.220] [INFO] 100	dehash	420   41750    3ms    8ms
 [08:28:51.220] [INFO] 100	hash	420   41560    3ms    8ms
 ```
+
+Final Task Test
+===
+1. Pick several base msisdns(phone numbers)
+2. Retrieve hashes by msisdns
+3. Set hash-system to migration mode
+4. Retrieve new hashes by old hashes by migration API
+5. Retrieve msisdns by new hashes
+6. Compare base msisdns with p.5, must be totally match.
