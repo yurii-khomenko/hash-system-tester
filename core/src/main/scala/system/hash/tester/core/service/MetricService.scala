@@ -99,7 +99,6 @@ object MetricService {
     log.info("top:")
     log.info("treads   name    tpsOne tpsAll    p90    p99")
 
-    //    top.sortBy(r => (r.p99, -r.tpsAll * 100000)).foreach {
     results
       .filter(_.name != "hash+dehash")
       .foreach(r => log.info(f"${r.treadsCount}\t${r.name}\t${r.tpsOne}%.0f   ${r.tpsAll}%.0f    ${r.p90}%.0fms    ${r.p99}%.0fms"))
